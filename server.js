@@ -3,7 +3,7 @@ const app = express();
 const db = require('./db');
 const bodyparse = require('body-parser');
 app.use(bodyparse.json()); //store data in req.body
-
+require('dotenv').config();
 
 
 const { round } = require('lodash');
@@ -20,7 +20,9 @@ const menuItemRoutes=require('./routes/menuItemRoutes');
 app.use('/person',personRoutes);
 app.use('/menu',menuItemRoutes);
 
-app.listen(3006, () => {
+const port=process.env.port || 3006;
+
+app.listen(port, () => {
     console.log('server is running');
 });
 
